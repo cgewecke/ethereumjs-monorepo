@@ -37,7 +37,7 @@ npm-auth-to-token \
   -u test \
   -p test \
   -e test@test.com \
-  -r http://localhost:4873
+  -r http://localhost:4873 \
 
 # Lerna version
 lerna version minor \
@@ -47,8 +47,8 @@ lerna version minor \
   --yes
 
 # Set identity prior to publishing (necessary for Windows)
-#git config user.email "you@example.com"
-#git config user.name "Your Name"
+git config user.email "you@example.com"
+git config user.name "Your Name"
 
 # Commit changes because lerna checks git before
 git commit -a -m 'virtual-version-bump'
