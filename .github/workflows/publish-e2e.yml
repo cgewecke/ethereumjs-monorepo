@@ -44,6 +44,11 @@ jobs:
       # An example installation with some checks that everything worked ok
       - name: Validate
         run: |
+          echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+          echo "Verify resolutions.json object is correct  "
+          echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+          npm run e2e:resolutions
+          echo ""
           mkdir test-publish && cd test-publish
           npm init --yes
           yarn add @ethereumjs/vm@e2e --registry http://localhost:4873 --network-timeout 500000
