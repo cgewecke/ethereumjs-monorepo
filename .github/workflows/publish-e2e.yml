@@ -38,6 +38,27 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
 
       # Publishes all packages to a virtual npm registry after giving each a minor version bump
-      - run: npm run e2e:publish
+      - name: Publish to virtual registry
+        run: npm run e2e:publish
+
+      # An example installation with some checks that everything worked ok
+      - name: Validate
+        run: |
+          mkdir test-publish && cd test-publish
+          npm init --yes
+          yarn add @ethereumjs/vm@e2e --registry http://localhost:4873 --network-timeout 500000
+          echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+          echo "Verify virtually published vm was installed"
+          echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+          cat package.json
+          echo ""
+          echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+          echo "Verify vm uses virtually published dependencies"
+          echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+          cat node_modules/@ethereumjs/vm/package.json
+
+
+
+
 
 
