@@ -48,6 +48,7 @@ jobs:
           echo "Verify resolutions.json object is correct  "
           echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
           npm run e2e:resolutions
+          cat resolutions.json
           echo ""
           mkdir test-publish && cd test-publish
           npm init --yes
