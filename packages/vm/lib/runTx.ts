@@ -1,11 +1,7 @@
 import { debug as createDebugLogger } from 'debug'
 import { Address, BN } from 'ethereumjs-util'
 import { Block } from '@ethereumjs/block'
-import {
-  AccessListItem,
-  AccessListEIP2930Transaction,
-  TypedTransaction,
-} from '@ethereumjs/tx'
+import { AccessListItem, AccessListEIP2930Transaction, TypedTransaction } from '@ethereumjs/tx'
 import VM from './index'
 import Bloom from './bloom'
 import { default as EVM, EVMResult } from './evm/evm'
