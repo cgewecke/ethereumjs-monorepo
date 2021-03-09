@@ -33,8 +33,8 @@ tx_backwards_compatibility_test(){
 
   # Make test consume everything from node_modules
   sed -i "s|../../lib|@ethereumjs/vm/dist|g" $E2E_TEST_DIRECTORY/runTx.spec.ts
-  sed -i "s|../../lib/index|@ethereumjs/vm|g" $E2E_TEST_DIRECTORY/utils.ts
-  sed -i "s|../../lib|@ethereumjs/vm|g" $E2E_TEST_DIRECTORY/utils.ts
+  sed -i "s|../../lib/index|@ethereumjs/vm/dist|g" $E2E_TEST_DIRECTORY/utils.ts
+  sed -i "s|../../lib|@ethereumjs/vm/dist|g" $E2E_TEST_DIRECTORY/utils.ts
 
   # Test
   npx tape -r ts-node/register "$E2E_TEST_DIRECTORY/runTx.spec.ts"
