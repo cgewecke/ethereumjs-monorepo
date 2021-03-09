@@ -43,6 +43,7 @@ setup_compatibility_test(){
 teardown_compatibility_test(){
   only_in_ci
   rm -rf $E2E_TEST_DIRECTORY
+  rm tsconfig.json
 }
 
 
