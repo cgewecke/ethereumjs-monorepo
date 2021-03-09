@@ -24,7 +24,7 @@ only_in_ci(){
 
 # Installs a testbed for checking the backwards compatibility of current monorepo state
 # with previously published sub-dependencies. The "old dependency" is installed from npm,
-# the current monorepo state is installed from a virtual npm registry.
+# the current monorepo state is installed from an ephemeral npm registry spun up in CI.
 #
 # USAGE:   setup_compatibility_test <old-sub-dependency> <virtually-published-package>
 # EXAMPLE: setup_compatibility_test @ethereumjs/tx@3.0.2 @ethereumjs/vm@e2e

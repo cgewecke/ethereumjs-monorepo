@@ -3,18 +3,22 @@
 # Exit immediately on error
 set -o errexit
 
-# Creates a mock project with structure like:
+# Creates a mock project with structure:
 # + node_modules/
 #     @ethereumjs/tx: 3.0.2
 #     @ethereumjs/vm: master
 #       @ethereumjs/tx master
 #
+# // From monorepo/packages/vm/tests/api/
+# // (import paths are modified to use node_modules packages above)
+# + runTx.spec.ts
+# + utils.ts
 #
 #
 tx_backwards_compatibility_test(){
   # Setup
   source ./scripts/e2e-compat-utils.sh
-  setup_compatibility_test @ethereumjs/tx@3.0.2 @ethereumjs/vm
+  setup_compatibility_test @ethereumjs/tx@3.0.2 @ethereumjs/vm@e2e
 
   # Copy target test, utils, tsconfig over
   cp packages/vm/tests/api/runTx.spec.ts $E2E_TEST_DIRECTORY
