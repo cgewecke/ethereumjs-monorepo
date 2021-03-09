@@ -60,5 +60,4 @@ git commit -a -m 'E2E testing'
 lerna publish from-package \
   --dist-tag e2e \
   --registry http://localhost:4873 \
-  --ignore-scripts \
   --yes
