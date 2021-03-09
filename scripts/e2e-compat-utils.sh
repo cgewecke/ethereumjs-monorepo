@@ -35,7 +35,7 @@ setup_compatibility_test(){
   cd $E2E_TEST_DIRECTORY
   npm init --yes
   yarn add $1
-  yarn add $2 #--registry http://localhost:4873 --network-timeout 500000
+  yarn add $2 --registry http://localhost:4873 --network-timeout 500000
   cd ..
 }
 
