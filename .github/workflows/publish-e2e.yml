@@ -37,6 +37,9 @@ jobs:
       - run: npm install
         if: steps.cache.outputs.cache-hit != 'true'
 
+      # Always build (--ignore scripts is set in the publish step that follows)
+      - run: npm run build
+
       # Publishes all packages to a virtual npm registry after giving each a minor version bump
       - name: Publish to virtual registry
         run: npm run e2e:publish
