@@ -19,7 +19,7 @@ export default class TransactionFactory {
   public static fromTxData(
     txData: TxData | AccessListEIP2930TxData,
     txOptions: TxOptions = {}
-  ): TypedTransaction {
+  ): TypedTransaction<any> {
     const common = txOptions.common ?? DEFAULT_COMMON
     if (!('type' in txData) || txData.type === undefined) {
       // Assume Transaction
@@ -40,7 +40,7 @@ export default class TransactionFactory {
    * @param rawData - The raw data buffer
    * @param txOptions - The transaction options
    */
-  public static fromRawData(rawData: Buffer, txOptions: TxOptions = {}): TypedTransaction {
+  public static fromRawData(rawData: Buffer, txOptions: TxOptions = {}): TypedTransaction<any> {
     const common = txOptions.common ?? DEFAULT_COMMON
     if (rawData[0] <= 0x7f) {
       // It is an EIP-2718 Typed Transaction

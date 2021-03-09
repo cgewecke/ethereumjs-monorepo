@@ -58,7 +58,7 @@ export function isAccessList(input: AccessListBuffer | AccessList): input is Acc
   return !isAccessListBuffer(input) // This is exactly the same method, except the output is negated.
 }
 
-export type TypedTransaction = Transaction | AccessListEIP2930Transaction
+export type TypedTransaction<T> = T extends Transaction ? Transaction : AccessListEIP2930Transaction
 
 export type TxData = {
   /**

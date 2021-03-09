@@ -5,7 +5,6 @@ import {
   AccessListItem,
   AccessListEIP2930Transaction,
   TypedTransaction,
-  Transaction,
 } from '@ethereumjs/tx'
 import VM from './index'
 import Bloom from './bloom'
@@ -30,7 +29,7 @@ export interface RunTxOpts {
   /**
    * An `@ethereumjs/tx` to run
    */
-  tx: Transaction | TypedTransaction
+  tx: TypedTransaction<any>
   /**
    * If true, skips the nonce check
    */
@@ -69,7 +68,7 @@ export interface AfterTxEvent extends RunTxResult {
   /**
    * The transaction which just got finished
    */
-  transaction: TypedTransaction
+  transaction: TypedTransaction<any>
 }
 
 /**
