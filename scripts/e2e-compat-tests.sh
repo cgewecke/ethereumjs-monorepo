@@ -25,11 +25,11 @@ tx_backwards_compatibility_test(){
   cp packages/vm/tests/api/utils.ts $E2E_TEST_DIRECTORY/utils.ts
   cp packages/vm/tsconfig.json tsconfig.json
 
-  echo ">>>> e2e_test/node_modules >>>>"
-  ls -A e2e_test/node_modules
+  echo ">>>> e2e_test/node_modules/@ethereumjs >>>>"
+  ls -A e2e_test/node_modules/@ethereumjs
 
-  echo ">>>> e2e_test/node_modules/@ethereumjs/vm >>>>"
-  ls -A e2e_test/node_modules/@ethereumjs/vm/node_modules
+  echo ">>>> e2e_test/node_modules/@ethereumjs/vm/@ethereumjs >>>>"
+  ls -A e2e_test/node_modules/@ethereumjs/vm/node_modules/@ethereumjs
 
   # Make test consume everything from node_modules
   sed -i "s|../../lib|@ethereumjs/vm/dist|g" $E2E_TEST_DIRECTORY/runTx.spec.ts
