@@ -109,13 +109,12 @@ tape('should fail when account balance overflows (create)', async (t) => {
 })
 
 tape('should clear storage cache after every transaction', async (t) => {
-  const common = new Common({ chain: 'mainnet', hardfork: 'istanbul' })
-  const vm = new VM({ common })
+  const vm = new VM()
   const privateKey = Buffer.from(
     'e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109',
     'hex'
   )
-  /* Code which is deployed here: 
+  /* Code which is deployed here:
     PUSH1 01
     PUSH1 00
     SSTORE
@@ -129,15 +128,12 @@ tape('should clear storage cache after every transaction', async (t) => {
     Buffer.from('00'.repeat(32), 'hex'),
     Buffer.from('00'.repeat(31) + '01', 'hex')
   )
-  const tx = Transaction.fromTxData(
-    {
-      nonce: '0x00',
-      gasPrice: 1,
-      gasLimit: 100000,
-      to: address,
-    },
-    { common }
-  ).sign(privateKey)
+  const tx = Transaction.fromTxData({
+    nonce: '0x00',
+    gasPrice: 1,
+    gasLimit: 100000,
+    to: address,
+  }).sign(privateKey)
 
   await vm.stateManager.putAccount(tx.getSenderAddress(), createAccount())
 
