@@ -41,11 +41,10 @@ jobs:
       - name: Publish to virtual registry
         run: npm run e2e:publish
 
-      - name: Load backwards compatibility tests
-        run: source scripts/e2e-compat-tests.sh
-
       - name: Transaction Backwards Compatibility test
-        run: tx_backwards_compatibility_test
+        run: |
+          source scripts/e2e-compat-tests.sh
+          tx_backwards_compatibility_test
 
 
 
