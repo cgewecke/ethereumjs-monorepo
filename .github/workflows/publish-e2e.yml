@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12]
+        node-version: [15]
     steps:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -44,10 +44,17 @@ jobs:
       - name: Publish to virtual registry
         run: npm run e2e:publish
 
-      - name: Transaction Backwards Compatibility test
+      # This project is simple / does not require resolutions injection
+      - name: E2E Target - NoahZinsmeister/as-you-permit
         run: |
-          source scripts/e2e-compat-tests.sh
-          tx_backwards_compatibility_test
+          git clone https://github.com/NoahZinsmeister/as-you-permit.git
+          cd as-you-permit
+          yarn
+          yarn add @ethereumjs/vm@e2e
+          yarn test --verbose
+
+        env:
+          URL_MAINNET: ${{ secrets.URL_MAINNET }}
 
 
 

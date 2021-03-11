@@ -152,7 +152,7 @@ export default class VM extends AsyncEventEmitter {
    */
   constructor(opts: VMOpts = {}) {
     super()
-
+    console.log('>>>>> HELLO FROM @ethereumjs/vm@e2e >>>>>');
     this._opts = opts
 
     // Throw on chain or hardfork options removed in latest major release
