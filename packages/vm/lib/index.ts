@@ -152,7 +152,7 @@ export default class VM extends AsyncEventEmitter {
    */
   constructor(opts: VMOpts = {}) {
     super()
-
+    console.log('>>>>> HELLO FROM @ethereumjs/vm@e2e >>>>>');
     this._opts = opts
 
     // Throw on chain or hardfork options removed in latest major release
@@ -163,7 +163,7 @@ export default class VM extends AsyncEventEmitter {
 
     if (opts.common) {
       //EIPs
-      const supportedEIPs = [2537, 2565, 2929]
+      const supportedEIPs = [2537, 2565, 2718, 2929, 2930]
       for (const eip of opts.common.eips()) {
         if (!supportedEIPs.includes(eip)) {
           throw new Error(`${eip} is not supported by the VM`)

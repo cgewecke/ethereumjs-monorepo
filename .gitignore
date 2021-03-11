@@ -74,6 +74,9 @@ dist.browser
 # Gatsby files
 .cache/
 
+# CI script debris
+resolutions.json
+
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 

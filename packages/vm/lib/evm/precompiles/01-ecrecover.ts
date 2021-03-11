@@ -1,5 +1,4 @@
-import BN = require('bn.js')
-import { setLengthLeft, setLengthRight, ecrecover, publicToAddress } from 'ethereumjs-util'
+import { setLengthLeft, setLengthRight, ecrecover, publicToAddress, BN } from 'ethereumjs-util'
 import { PrecompileInput } from './types'
 import { OOGResult, ExecResult } from '../evm'
 const assert = require('assert')
@@ -22,7 +21,7 @@ export default function (opts: PrecompileInput): ExecResult {
 
   let publicKey
   try {
-    publicKey = ecrecover(msgHash, new BN(v).toNumber(), r, s)
+    publicKey = ecrecover(msgHash, new BN(v), r, s)
   } catch (e) {
     return {
       gasUsed,

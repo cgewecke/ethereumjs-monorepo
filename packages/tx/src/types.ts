@@ -1,5 +1,7 @@
 import { AddressLike, BNLike, BufferLike } from 'ethereumjs-util'
 import Common from '@ethereumjs/common'
+import { default as Transaction } from './legacyTransaction'
+import { default as AccessListEIP2930Transaction } from './eip2930Transaction'
 
 /**
  * The options for initializing a Transaction.
@@ -29,10 +31,36 @@ export interface TxOptions {
   freeze?: boolean
 }
 
-/**
- * An object with an optional field with each of the transaction's values.
- */
-export interface TxData {
+export type AccessListItem = {
+  address: string
+  storageKeys: string[]
+}
+
+export type AccessListBufferItem = [Buffer, Buffer[]]
+
+export type AccessList = AccessListItem[]
+export type AccessListBuffer = AccessListBufferItem[]
+
+export function isAccessListBuffer(
+  input: AccessListBuffer | AccessList
+): input is AccessListBuffer {
+  if (input.length === 0) {
+    return true
+  }
+  const firstItem = input[0]
+  if (Array.isArray(firstItem)) {
+    return true
+  }
+  return false
+}
+
+export function isAccessList(input: AccessListBuffer | AccessList): input is AccessList {
+  return !isAccessListBuffer(input) // This is exactly the same method, except the output is negated.
+}
+
+export type TypedTransaction<T> = T extends Transaction ? Transaction : AccessListEIP2930Transaction
+
+export type TxData = {
   /**
    * The transaction's nonce.
    */
@@ -80,6 +108,29 @@ export interface TxData {
 }
 
 /**
+ * An object with an optional field with each of the transaction's values.
+ */
+export interface AccessListEIP2930TxData extends TxData {
+  /**
+   * The transaction's chain ID
+   */
+  chainId?: BNLike
+
+  /**
+   * The access list which contains the addresses/storage slots which the transaction wishes to access
+   */
+  accessList?: AccessListBuffer | AccessList
+
+  /**
+   * The transaction type
+   */
+
+  type?: BNLike
+}
+
+type JsonAccessListItem = { address: string; storageKeys: string[] }
+
+/**
  * An object with all of the transaction's values represented as strings.
  */
 export interface JsonTx {
@@ -92,4 +143,7 @@ export interface JsonTx {
   r?: string
   s?: string
   value?: string
+  chainId?: string
+  accessList?: JsonAccessListItem[]
+  type?: string
 }
